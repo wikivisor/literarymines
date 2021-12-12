@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+<?xml-model href="https://ProfessionalWiki.github.io/chameleon/schema/3.2/layout.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+This file is part of the MediaWiki skin Chameleon.
+
+@copyright 2013 - 2021, Stephan Gambke
+@license   GNU General Public License, version 3 (or any later version)
+
+The Chameleon skin is free software: you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version.
+
+The Chameleon skin is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along
+with this program. If not, see <http://www.gnu.org/licenses/>.
+
+@author Stephan Gambke
+@since 1.1
+@ingroup Skins
+-->
+<structure xmlns="https://ProfessionalWiki.github.io/chameleon/schema/3.2/layout.rng">
+	<grid mode="fluid">
+		<row id="layout">
+			<cell id="sidebar-area">
+				<component type="Html"><![CDATA[
+					<div id="p-logo" class="p-logo d-flex flex-column justify-content-between" role="banner">
+						<div class="d-flex flex-row justify-content-between">
+							<a id="home-link" class="nav-link" href="/" title="Visit the main page"></a>
+							<a href="#top-area" class="float-right d-cmln-none"><i class="fas fa-chevron-up"></i></a>
+						</div>
+					</div>
+				]]></component>
+				<component type="Container" class="flex-fill py-cmln-5">
+					<component type="Menu" message="Sidebar-custom"/>
+					<component type="NavbarHorizontal" collapsible="no">
+						<component type="Toolbox" flatten="no"/>
+					</component>
+				</component>
+				<component type="Html"><![CDATA[
+					<div class="footer-area footer-info m-0"><div>Powered by <a class="" href="https://mediawiki.org" target="_blank">MediaWiki</a></div></div>
+				]]></component>
+			</cell>
+			<cell id="main-content-area">
+				<component type="Container" id="top-area">
+					<component type="Html"><![CDATA[
+						<div id="p-logo" class="p-logo d-cmln-none" role="banner">
+							<a href="#sidebar-area" class="float-right"><i class="fas fa-bars"></i></a>
+							<a id="home-link" class="nav-link" href="/" title="Visit the main page"></a>
+						</div>
+					]]></component>
+					<component type="Container" class="search-wrapper d-flex justify-content-between align-items-center px-cmln-4">
+						<component type="SearchBar" buttons="search"/>
+						<component type="Container" class="d-flex justify-content-end align-items-center w-100">
+							<component type="Html"><modification type="HideFor" permission="edit" /><![CDATA[
+								<a id="login-link" class="nav-link">Log in</a>
+							]]></component>
+							<component type="Html"><modification type="HideFor" namespace="NS_USER"/><modification type="ShowOnlyFor" permission="edit"/><![CDATA[
+								<a id="user-link" class="nav-link"></a>
+							]]></component>
+							<component type="Html"><modification type="ShowOnlyFor" permission="edit"/><![CDATA[
+								<a id="logout-link" class="nav-link">Log out</a>
+							]]></component>
+						</component>
+					</component>
+				</component>
+				<component type="Container" class="article-wrapper flex-fill py-3">
+					<component type="SiteNotice" />
+					<component type="PageTools" hideSelectedNameSpace="yes">
+						<modification type="ShowOnlyFor" permission="edit" />
+					</component>
+					<component type="PersonalTools" showEcho="links">
+						<modification type="ShowOnlyFor" namespace="NS_USER" />
+					</component>
+					<component type="MainContent"/>
+			                <component type="Html"><![CDATA[
+        	        		        <a href="#" id="back-to-top"></a>
+			                ]]></component>
+				</component>
+				<component type="Container" class="footer-area">
+					<component type="FooterInfo"/>
+					<component type="FooterPlaces"/>
+				</component>
+			</cell>
+		</row>
+	</grid>
+</structure>
